@@ -8,7 +8,6 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-# praw
 client_id=os.getenv("CLIENT_ID")
 client_secret=os.getenv("CLIENT_SECRET")
 user_agent=os.getenv("USER_AGENT")
@@ -36,7 +35,7 @@ def main():
     data_dir = "data"
     dont_scrape = True # set to true once we have data
     max_agents = 20
-    max_threads = 8
+    max_threads = 5
     
     # Scrape subreddit data
     scraper = RedditScraper(
@@ -129,7 +128,8 @@ def main():
             print(f"Agent {user} acted, reward: {reward}")
             print(f"Agent action: {agent.action_history[-1]['action']}")
 
-    env.save_state("final_state.json")
+    env.save_state("simulated_subreddit.json")
+    print("Simulation saved to simulated_subreddit.json")
 
 if __name__ == "__main__":
     main()
